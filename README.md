@@ -1,4 +1,4 @@
-# Authantication And Access-Control
+# Authantication And Access Control
 
 ## Features
 - Registration
