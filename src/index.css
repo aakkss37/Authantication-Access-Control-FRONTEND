@@ -1,70 +1,60 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+	font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+	line-height: 1.5;
+	font-weight: 400;
 
-  color-scheme: light dark;
-  color: rgba(243, 243, 243, 0.87);
-  background-color: #23232c;
+	color-scheme: light dark;
+	color: rgba(243, 243, 243, 0.87);
+	background-color: #23232c;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
 }
+
 /* div, section, main{
 	border: 1px solid red;
 } */
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
 
 body {
-  min-height: 97vh;
+	min-height: 97vh;
 }
 
 h1 {
-  font-size: 3.2em;
-  line-height: 0;
+	font-size: 3.2em;
+	line-height: 0;
 }
 
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+.button_enabled {
+	border-radius: 8px;
+	border: 1px solid transparent;
+	padding: 0.6em 1.2em;
+	font-family: inherit;
+	background-color: #23232c;
+	cursor: pointer;
+	color: white;
+	transition: border-color 0.25s;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+.button_enabled:hover {
+	border-color: #707070c7;
 }
+.button_disabled {
+	border-radius: 8px;
+	border: 1px solid transparent;
+	padding: 0.6em 1.2em;
+	font-family: inherit;
+	background-color: #5f5f5f;
+	cursor: not-allowed;
+	color: rgb(139, 139, 139);
+	transition: border-color 0.25s;
+}
+
+
+
+
 /* ! *************************************** */
 /* ! *************************************** */
 /* ! *************************************** */
@@ -73,7 +63,7 @@ button:focus-visible {
 /* ! *************************************** */
 
 
-.registration{
+.registration {
 	height: 97vh;
 	display: flex;
 	flex-direction: column;
@@ -81,7 +71,7 @@ button:focus-visible {
 	align-items: center;
 }
 
-.registration_container{
+.registration_container {
 	width: 500px;
 	background-color: #b8b8b84b;
 	border-radius: 10px;
@@ -89,10 +79,18 @@ button:focus-visible {
 	box-shadow: 0px 0px 15px 1px #fffefe21;
 }
 
-.registratrion_form_input{
+.registratrion_form_input {
 	display: flex;
 	flex-direction: column;
-	margin: 20px 0px;
+	/* margin: 20px 0px; */
+}
+
+form {
+	display: flex;
+	flex-direction: column;
+	gap: 30px;
+	margin-top: 40px;
+	margin-bottom: 20px;
 }
 
 a,
@@ -102,23 +100,20 @@ a:visited {
 
 input[type="text"],
 input[type="password"],
-button,
 textarea {
 	font-family: 'Nunito', sans-serif;
 	font-size: 22px;
 	padding: 0.25rem;
+	padding-left: 10px;
 	border-radius: 5px;
 	border: 1px solid rgb(160, 160, 160);
 }
 
-label,
+/* label,
 button {
 	margin-top: 1rem;
-}
+} */
 
-button {
-	padding: 0.5rem;
-}
 
 .instructions {
 	font-size: 0.75rem;
@@ -164,3 +159,20 @@ button {
 .line {
 	display: inline-block;
 }
+
+/* .button_enabled {
+	border-radius: 8px;
+	border: 1px solid gray;
+	background-color: #23232c;
+	cursor: pointer;
+	color: white;
+	transition: border-color 0.25s;
+}
+.button_disabled {
+	border-radius: 8px;
+	border: 1px solid gray;
+	background-color: #23232c;
+	cursor: pointer;
+	color: white;
+	transition: border-color 0.25s;
+} */

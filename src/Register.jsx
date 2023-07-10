@@ -6,10 +6,12 @@ import {
 	faInfoCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
+import axios from "./api/axios";
 
 const USER_REGEX = /^[A-z][A-z0-9-_]{3,23}$/;
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = "/register";
 
 const Register = () => {
 	const userRef = useRef();
@@ -28,9 +30,10 @@ const Register = () => {
 	const [matchFocus, setMatchFocus] = useState(false);
 
 	const [errMsg, setErrMsg] = useState("");
-	const [success, setSuccess] = useState(false);
+	// const [success, setSuccess] = useState(false);
 
 	useEffect(() => {
+		console.log("printed");
 		userRef.current.focus();
 	}, []);
 
@@ -47,12 +50,37 @@ const Register = () => {
 		setErrMsg("");
 	}, [user, pwd, matchPwd]);
 
+	const handleSubmit = async (e) => {
+		e.preventDefault();
+		const v1 = USER_REGEX.test(user);
+		const v2 = PWD_REGEX.test(pwd);
+		if (!v1 || !v2) {
+			setErrMsg("Invalid Entry");
+			return;
+		}
+		try {
+			const response = await axios.post(
+				"/auth/register",
+				JSON.stringify({
+					user,
+					pwd,
+				})
+			);
+			console.log(response);
+			toast.success("Sucessfully Registered!");
+		} catch (error) {
+			toast.error("Something went wrong! Try again");
+		}
+	};
+
 	return (
 		<section className="registration">
 			<div className="registration_container">
 				<div>
 					<h1>Register</h1>
-					<p style={{color: "Gray"}}>Welcome, Please fill the form for registration.</p>
+					<p style={{ color: "Gray" }}>
+						Welcome, Please fill the form for registration.
+					</p>
 				</div>
 				<p
 					ref={errRef}
@@ -60,7 +88,7 @@ const Register = () => {
 					aria-live="assertive">
 					{errMsg}
 				</p>
-				<form>
+				<form onSubmit={handleSubmit}>
 					<div className="registratrion_form_input">
 						<label htmlFor="username">
 							Username:
@@ -187,7 +215,28 @@ const Register = () => {
 							Must match the first password input field.
 						</p>
 					</div>
+					<button
+						type="submit"
+						disabled={
+							!validName || !validPwd || !validMatch
+								? true
+								: false
+						}
+						className={
+							!validName || !validPwd || !validMatch
+								? "button_disabled"
+								: "button_enabled"
+						}>
+						Sign Up
+					</button>
 				</form>
+				<p>
+					Already registered? &nbsp;
+					<span className="line">
+						{/*put router link here*/}
+						<Link> Sign In</Link>
+					</span>
+				</p>
 			</div>
 		</section>
 	);
